@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Show</title>
+</head>
+<body>
+	<h1>Flight Information</h1>
+	<h3>Airline: <%= flightDatabase.airline %></h3>
+	<h3>Airport: <%= flightDatabase.airport %></h3>
+    <h3>Flight Number: <%= flightDatabase.flightNo %></h3>
+	<h3>Departs: <%= flightDatabase.departs %></h3>
+</body>
+</html>
+
+<form id="new-dest" action="/flights/" method="POST">
+    
+    <label>Airport Destination</label>
+    <select name="airportDestination">
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+      <option value="DFW">DFW</option>
+      <option value="AUS">AUS</option>
+    </select>
+    <br>
+    <label>Arrival Date and Time:</label>
+    <input type="datetime-local" name="arrival">
+  
+    <input type="submit" value="Add Destination">
+	<br><br><br>
+
+<% if (flightDatabase.destinations.length) { %>
+	<table>
+	  <thead>
+		<tr>
+		  <th>Airport</th>
+		  <th>Arrival</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<% flight.destinations.forEach(function(d) { %>
+		  <tr>
+			<td><%= d.airportDestination %></td>
+			<td><%= d.arrival %></td>
+		  </tr>
+		<% }); %>
+	  </tbody>
+	</table>
+  <% } else { %>
+	<h4>Destination(s) TBA...</h4>
+  <% } %>
