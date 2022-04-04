@@ -11,8 +11,9 @@ function setDestination(req, res){
 
     Flight.findById(req.params.id, function(err, flightDataBase){
         flightDataBase.destinations.push(req.body)
-        flightDatabase.save(function(err){
-			res.redirect(`/flights/${movieFromTheDatabase._id}`)
+        console.log("Should've saved Destinations")
+        flightDataBase.save(function(err){
+			res.redirect(`/flights/${flightDataBase._id}`)
         })
     })
 }

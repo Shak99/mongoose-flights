@@ -12,10 +12,12 @@
 	<h3>Airport: <%= flightDatabase.airport %></h3>
     <h3>Flight Number: <%= flightDatabase.flightNo %></h3>
 	<h3>Departs: <%= flightDatabase.departs %></h3>
+	<h3>Arrival Destination: <%= flightDatabase.destinations.airportDest%></h3>
+	<h3>Arrival Time: <%= flightDatabase.destinations.arrival %></h3>
 </body>
 </html>
 
-<form id="new-dest" action="/flights/" method="POST">
+<form id="new-dest" action="/flights/<%=flightDatabase._id%>/destinations" method="POST">
     
     <label>Airport Destination</label>
     <select name="airportDestination">
@@ -41,7 +43,7 @@
 		</tr>
 	  </thead>
 	  <tbody>
-		<% flight.destinations.forEach(function(d) { %>
+		<% flightDatabase.destinations.forEach(function(d) { %>
 		  <tr>
 			<td><%= d.airportDestination %></td>
 			<td><%= d.arrival %></td>

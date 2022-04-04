@@ -33,6 +33,7 @@ function newFlight(req, res) {
 function create(req, res){
     console.log(req.body)
     Flight.create(req.body, function(err, flightDatabase){ 
+            console.log(err)
             if (err) return res.redirect("/flights/new");
             console.log(flightDatabase);
             res.redirect("/flights");

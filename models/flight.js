@@ -5,14 +5,14 @@ const Schema = mongoose.Schema;
 
 const destinationSchema = new Schema({
     airportDestination: String,
-    arrival: Date
+    arrival: {type: Date, min: Date.now() + (365 * 24 * 60 * 60 * 1000)}
 })
 
 const flightSchema = new Schema({
     airline: String,
-    airport: String,
-    flightNo: Number,
-    departs: Date,
+    airport: {type: String, Default: "DEN"},
+    flightNo: {type: Number, range: [10, 9999]},
+    departs: {type: Date, min: Date.now() + 365 * 24 * 60 * 60 * 1000},
     destinations: [destinationSchema]
 })
 
