@@ -7,6 +7,8 @@
 	<title>Show</title>
 </head>
 <body>
+	<a href="/flights"> <button>View Flights</button> </a>
+
 	<h1>Flight Information</h1>
 	<h3>Airline: <%= flightDatabase.airline %></h3>
 	<h3>Airport: <%= flightDatabase.airport %></h3>
@@ -14,8 +16,7 @@
 	<h3>Departs: <%= flightDatabase.departs %></h3>
 	<h3>Arrival Destination: <%= flightDatabase.destinations.airportDest%></h3>
 	<h3>Arrival Time: <%= flightDatabase.destinations.arrival %></h3>
-</body>
-</html>
+
 
 <form id="new-dest" action="/flights/<%=flightDatabase._id%>/destinations" method="POST">
     
@@ -54,3 +55,34 @@
   <% } else { %>
 	<h4>Destination(s) TBA...</h4>
   <% } %>
+
+
+  <form id="add-per-to-flight" action="/flights/<%= flightDatabase._id%>/tickets" method="POST">
+	<select name="ticketId">
+	  <%- ticketDatabase.map(t => `<option value="${t._id}">${t.seat}</option>`).join('') %>
+	</select>
+	<button type="submit">Add to Flight</button>
+  </form>
+
+
+  <% if (ticketDatabase.length) { %>
+	<table>
+	  <thead>
+		<tr>
+		  <th>Seat</th>
+		  <th>Price</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<% ticketDatabase.forEach(function(t) { %>
+		  <tr>
+			<td><%= t.seat %></td>
+			<td><%= t.price %></td>
+		  </tr>
+		<% }); %>
+	  </tbody>
+	</table>
+  <% } %>
+	<h4>No passengers yet</h4>
+</body>
+</html>

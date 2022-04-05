@@ -1,5 +1,6 @@
 //const { create } = require('../models/flight')
 const Flight = require('../models/flight')
+const Ticket = require('../models/ticket')
 //const { render } = require('../server')
 
 
@@ -21,7 +22,11 @@ function index(req, res){
 
 function show(req, res){
     Flight.findById(req.params.id, function(err, flightDatabase){
-        res.render("flights/show", {title: "Flight Detail", flightDatabase});
+        console.log(flightDatabase)
+        Ticket.find({flight : req.params.id}, function(err, ticketDatabase){
+            console.log(ticketDatabase)
+            res.render("flights/show", {title: "Flight Detail", flightDatabase, ticketDatabase});
+        })
     })
 }
 

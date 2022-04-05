@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+
+tr {
+  padding: 10px
+}
+tr:nth-child(even) {
+  background-color: #126c6c;
+}

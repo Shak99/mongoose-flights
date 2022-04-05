@@ -5,10 +5,14 @@
       <th>Airport</th>
       <th>Flight Number</th>
       <th>Departing Date</th>
+      <th>Arriving</th>
       <th>Information</th>
+      <th>Tickets</th>
     </tr> 
   </thead>
   <tbody>
+    <a href="/flights/new"> <button>Add a Flight</button> </a>
+
     <% flightDatabase.forEach(function(f) { %>
       <tr>
         <td><%= f.airline %></td>
@@ -17,6 +21,7 @@
         <td><%= f.departs %></td>
         <td><%= f.destinations %></td>
         <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+        <td><a href="/flights/<%= f._id %>/tickets/new">TICKETS</a></td>
       </tr>
       <% }); %>
     </tbody>
