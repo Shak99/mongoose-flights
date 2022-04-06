@@ -1,4 +1,6 @@
+<a href="/flights"> <button>View Flights</button> </a>
 
+<h1>Add a Ticket to Flight #<%=flightId %> </h1>
   <form id="order-tickets" action="/flights/<%=flightId%>/tickets" method="POST">
     <label>Choose Seat:</label>
     <input name="seat" required pattern="[A-F][1-9]\d?">

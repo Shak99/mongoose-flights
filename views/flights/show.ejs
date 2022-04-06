@@ -8,39 +8,21 @@
 </head>
 <body>
 	<a href="/flights"> <button>View Flights</button> </a>
-
 	<h1>Flight Information</h1>
+	<h2>Departure</h2>
 	<h3>Airline: <%= flightDatabase.airline %></h3>
 	<h3>Airport: <%= flightDatabase.airport %></h3>
     <h3>Flight Number: <%= flightDatabase.flightNo %></h3>
-	<h3>Departs: <%= flightDatabase.departs %></h3>
-	<h3>Arrival Destination: <%= flightDatabase.destinations.airportDest%></h3>
-	<h3>Arrival Time: <%= flightDatabase.destinations.arrival %></h3>
+	<h3>Date/Time: <%= flightDatabase.departs %></h3>
 
-
-<form id="new-dest" action="/flights/<%=flightDatabase._id%>/destinations" method="POST">
-    
-    <label>Airport Destination</label>
-    <select name="airportDestination">
-      <option value="DEN">DEN</option>
-      <option value="LAX">LAX</option>
-      <option value="SAN">SAN</option>
-      <option value="DFW">DFW</option>
-      <option value="AUS">AUS</option>
-    </select>
-    <br>
-    <label>Arrival Date and Time:</label>
-    <input type="datetime-local" name="arrival">
-  
-    <input type="submit" value="Add Destination">
-	<br><br><br>
-
+	<br><br>
+<h2>Arrival</h2>
 <% if (flightDatabase.destinations.length) { %>
 	<table>
 	  <thead>
 		<tr>
 		  <th>Airport</th>
-		  <th>Arrival</th>
+		  <th>Date/Time</th>
 		</tr>
 	  </thead>
 	  <tbody>
@@ -55,16 +37,8 @@
   <% } else { %>
 	<h4>Destination(s) TBA...</h4>
   <% } %>
-
-
-  <form id="add-per-to-flight" action="/flights/<%= flightDatabase._id%>/tickets" method="POST">
-	<select name="ticketId">
-	  <%- ticketDatabase.map(t => `<option value="${t._id}">${t.seat}</option>`).join('') %>
-	</select>
-	<button type="submit">Add to Flight</button>
-  </form>
-
-
+  
+  <h3>Tickets Purchased:</h3>
   <% if (ticketDatabase.length) { %>
 	<table>
 	  <thead>
@@ -83,6 +57,26 @@
 	  </tbody>
 	</table>
   <% } %>
-	<h4>No passengers yet</h4>
+
+  <br><br><br>
+  <h4>Add a Destination to this Flight</h4>
+  <form id="new-dest" action="/flights/<%=flightDatabase._id%>/destinations" method="POST">
+	  
+	  <label>Airport Destination</label>
+	  <select name="airportDestination">
+		<option value="DEN">DEN</option>
+		<option value="LAX">LAX</option>
+		<option value="SAN">SAN</option>
+		<option value="DFW">DFW</option>
+		<option value="AUS">AUS</option>
+	  </select>
+	  <br>
+	  <label>Arrival Date and Time:</label>
+	  <input type="datetime-local" name="arrival">
+	
+	  <input type="submit" value="Add Destination">
+
+
+
 </body>
 </html>
